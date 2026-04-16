@@ -39,7 +39,7 @@ struct CharacterDetailsView: View {
                 }
                 VStack(alignment: .leading){
                     ForEach(store.episodes){ episode in
-                        Text("Episode \(episode.episode)")
+                        Text("Odcinek \(episode.episode)")
                     }
                 }
             }
