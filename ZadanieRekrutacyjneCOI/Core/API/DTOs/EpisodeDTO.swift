@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EpisodeDTO: Decodable, Equatable, Identifiable {
+nonisolated struct EpisodeDTO: Decodable, Equatable, Identifiable {
     let id: Int
     let name: String
     let airDate: String

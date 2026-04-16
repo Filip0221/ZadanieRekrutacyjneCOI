@@ -9,7 +9,6 @@ import SwiftUI
 
 @Reducer
 struct CharactersListFeature {
-    
     @ObservableState
     struct State: Equatable{
         var characters: [CharacterDTO] = []
@@ -95,8 +94,10 @@ struct CharactersListFeature {
                 state.searchText = text
                 state.page = 1
                 state.characters = []
+                state.isLoading = true
                 
                 return .run { send in
+                    try await Task.sleep(for: .milliseconds(300))
                     do {
                         let response = try await apiClient.fetchCharacters(1, text)
                         await send(.characterResponse(.success(response)))

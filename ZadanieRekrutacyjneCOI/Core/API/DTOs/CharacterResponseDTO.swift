@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterResponseDTO: Decodable, Equatable {
+nonisolated struct CharacterResponseDTO: Decodable, Equatable {
     let info: PageInfoDTO
     let results: [CharacterDTO]
 }

@@ -84,8 +84,7 @@ extension DependencyValues {
         set { self[APIClient.self] = newValue }
     }
 }
-
-private func validate(response: URLResponse) throws {
+nonisolated private func validate(response: URLResponse) throws {
     guard let httpResponse = response as? HTTPURLResponse else {
         throw APIError.invalidResponse
     }
