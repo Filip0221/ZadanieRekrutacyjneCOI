@@ -15,27 +15,31 @@ struct CharactersListView: View {
         NavigationStack {
             List {
                 ForEach(store.characters) { character in
+                    NavigationLink{
+                        CharacterDetailsView(store: Store(initialState: CharacterDetailsFeature.State(character: character)){
+                            CharacterDetailsFeature()
+                        })
+                    } label: {
                     Text(character.name)
                         .onAppear {
                             guard character.id == store.characters.last?.id else {return}
-                            if character.id == store.characters.last?.id {
                                 store.send(.loadNextPage)
-                            }
                         }
                 }
-                
-                if store.isLoading {
-                    ProgressView()
-                        .frame(maxWidth: .infinity)
-                }
             }
-            .navigationTitle("Characters")
-            .task { await store.send(.onAppear).finish() }
-            .refreshable { await store.send(.refresh).finish() }
-            .searchable(text: Binding(
-                get: { store.searchText },
-                set: { store.send(.searchChanged($0)) }
-            ))
+            
+            if store.isLoading {
+                ProgressView()
+                    .frame(maxWidth: .infinity)
+            }
         }
+        .navigationTitle("Characters")
+        .task { await store.send(.onAppear).finish() }
+        .refreshable { await store.send(.refresh).finish() }
+        .searchable(text: Binding(
+            get: { store.searchText },
+            set: { store.send(.searchChanged($0)) }
+        ))
     }
+}
 }
