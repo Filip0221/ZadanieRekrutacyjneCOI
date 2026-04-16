@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct ZadanieRekrutacyjneCOIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CharactersListView(
+                store: Store(
+                    initialState: CharactersListFeature.State()){
+                        CharactersListFeature()
+                    }
+                
+            )
         }
     }
 }
