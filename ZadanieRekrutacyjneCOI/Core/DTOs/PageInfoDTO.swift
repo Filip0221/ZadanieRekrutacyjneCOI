@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PageInfoDTO: Decodable, Equatable {
+nonisolated struct PageInfoDTO: Decodable, Equatable {
     let count: Int
     let pages: Int
     let next: String?

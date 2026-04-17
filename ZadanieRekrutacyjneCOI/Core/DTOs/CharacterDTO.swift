@@ -18,6 +18,6 @@ nonisolated struct CharacterDTO: Decodable, Equatable, Identifiable {
     let episode: [String]
     
 }
-struct CharacterLocationDTO: Decodable, Equatable {
+nonisolated struct CharacterLocationDTO: Decodable, Equatable {
     let name: String
 }

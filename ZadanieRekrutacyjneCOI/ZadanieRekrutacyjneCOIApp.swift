@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComposableArchitecture
+import SwiftData
 
 @main
 struct ZadanieRekrutacyjneCOIApp: App {
@@ -20,5 +21,6 @@ struct ZadanieRekrutacyjneCOIApp: App {
                 
             )
         }
+        .modelContainer(for: FavoriteCharacter.self)
     }
 }

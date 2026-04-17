@@ -38,16 +38,23 @@ struct CharacterDetailsView: View {
                         .foregroundColor(.red)
                 }
                 VStack(alignment: .leading){
-                    ForEach(store.episodes){ episode in
-                        NavigationLink{
-                            EpisodeDetailsView(
-                                store: Store(initialState: EpisodeDetailsFeature.State(episodeID: episode.id)){
-                                    EpisodeDetailsFeature()
-                                })
-                        } label: {
-                            Text("Odcinek \(episode.episode)")
+                    DisclosureGroup("Odcinki w których występuje"){
+                        ForEach(store.episodes){ episode in
+                            NavigationLink{
+                                EpisodeDetailsView(
+                                    store: Store(initialState: EpisodeDetailsFeature.State(episodeID: episode.id)){
+                                        EpisodeDetailsFeature()
+                                    })
+                            } label: {
+                                Text("Odcinek \(episode.episode)")
+                                    .padding(.vertical, 5)
+                            }
                         }
                     }
+                    .padding(.horizontal, 10)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(12)
+                    .padding(.horizontal, 40)
                 }
             }
             .frame(maxWidth: .infinity)

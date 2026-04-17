@@ -17,6 +17,7 @@ struct CharactersListFeature {
         var canLoadMore: Bool = true
         var searchText: String = ""
         var errorMessage: String? = nil
+        var favoriteIDs: Set<Int> = []
     }
     
     enum Action: Equatable {
@@ -25,6 +26,8 @@ struct CharactersListFeature {
         case loadNextPage
         case refresh
         case searchChanged(String)
+        case toggleFavorite(Int)
+        case setFavorites(Set<Int>)
     }
     @Dependency(\.apiClient) var apiClient
     
@@ -54,6 +57,14 @@ struct CharactersListFeature {
                 let newCharacters = response.results.filter{newCharacter in
                     !state.characters.contains(where: { $0.id == newCharacter.id})}
                 state.characters += newCharacters
+                let favoriteIDs = state.favoriteIDs
+
+                state.characters.sort {
+                    if favoriteIDs.contains($0.id) != favoriteIDs.contains($1.id) {
+                        return favoriteIDs.contains($0.id)
+                    }
+                    return $0.id < $1.id
+                }
                 state.canLoadMore = response.info.next != nil
                 return .none
                 
@@ -107,6 +118,25 @@ struct CharactersListFeature {
                         await send(.characterResponse(.failure(.invalidResponse)))
                     }
                 }
+            case let .toggleFavorite(id):
+                if state.favoriteIDs.contains(id){
+                    state.favoriteIDs.remove(id)
+                } else {
+                    state.favoriteIDs.insert(id)
+                }
+                let favoriteIDs = state.favoriteIDs
+
+                state.characters.sort {
+                    if favoriteIDs.contains($0.id) != favoriteIDs.contains($1.id) {
+                        return favoriteIDs.contains($0.id)
+                    }
+                    return $0.id < $1.id
+                }
+                return .none
+                
+            case let .setFavorites(ids):
+                state.favoriteIDs = ids
+                return .none
             }
         }
     }
