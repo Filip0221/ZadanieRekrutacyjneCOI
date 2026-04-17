@@ -53,7 +53,7 @@ struct CharactersListView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .navigationTitle("Characters")
+        .navigationTitle("Bohaterowie")
         .task {
             let ids = Set(favorites.map {$0.id})
             store.send(.setFavorites(ids))

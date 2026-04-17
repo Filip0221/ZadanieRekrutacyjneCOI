@@ -25,9 +25,9 @@ struct CharacterDetailsView: View {
                     .font(.title)
                 
                 Text ("Status: \(store.character.status)")
-                Text ("Gender: \(store.character.gender)")
-                Text ("Origin: \(store.character.origin.name)")
-                Text ("Location: \(store.character.location.name)")
+                Text ("Płeć: \(store.character.gender)")
+                Text ("Pochodzenie: \(store.character.origin.name)")
+                Text ("Lokalizacja: \(store.character.location.name)")
                 
                 if store.isLoading {
                     ProgressView()

@@ -57,8 +57,7 @@ struct CharacterDetailsFeature{
                 state.isLoading = false
                 state.errorMessage = error.localizedDescription
                 return .none
-            }}
-            
-
+            }
+        }
     }
 }

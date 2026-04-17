@@ -23,10 +23,10 @@ struct EpisodeDetailsView: View {
                         Text(episode.name)
                             .font(.title)
                             .bold()
-                        Text("Air date: \(episode.airDate)")
+                        Text("Data premiery: \(episode.airDate)")
                             .italic()
-                        Text("Episode: \(episode.episode)")
-                        DisclosureGroup("Characters list"){
+                        Text("Ocinek: \(episode.episode)")
+                        DisclosureGroup("Lista bohaterów"){
                             ForEach(store.characters) {character in
                                 NavigationLink {
                                     CharacterDetailsView(
@@ -56,7 +56,7 @@ struct EpisodeDetailsView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
-                .navigationTitle("Episode")
+                .navigationTitle("Odcinek")
                 .task{
                     store.send(.onAppear)
                 }

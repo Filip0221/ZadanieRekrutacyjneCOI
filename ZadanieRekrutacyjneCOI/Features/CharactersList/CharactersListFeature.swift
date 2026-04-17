@@ -118,6 +118,7 @@ struct CharactersListFeature {
                         await send(.characterResponse(.failure(.invalidResponse)))
                     }
                 }
+                // toogle favorite add and delete
             case let .toggleFavorite(id):
                 if state.favoriteIDs.contains(id){
                     state.favoriteIDs.remove(id)
@@ -134,6 +135,7 @@ struct CharactersListFeature {
                 }
                 return .none
                 
+                // set favorites
             case let .setFavorites(ids):
                 state.favoriteIDs = ids
                 return .none

@@ -28,6 +28,7 @@ struct EpisodeDetailsFeature{
     var body: some Reducer<State, Action> {
         Reduce{ state, action in
             switch action {
+                // firstload
             case .onAppear:
                 state.isLoading = true
                 state.errorMessage = nil
@@ -43,6 +44,7 @@ struct EpisodeDetailsFeature{
                         await send(.episodeResponse(.failure(.invalidResponse)))
                     }
                 }
+                // success
             case let .episodeResponse(.success(episode)):
                 state.isLoading = false
                 state.episode = episode
@@ -58,15 +60,16 @@ struct EpisodeDetailsFeature{
                             await send(.charactersResponse(.failure(apiError)))
                         }
                     }
-                
+                // error
             case let .episodeResponse(.failure(error)):
                 state.isLoading = false
                 state.errorMessage = error.localizedDescription
                 return .none
+                // success characters
             case let .charactersResponse(.success(characters)):
                 state.characters = characters
                 return .none
-
+                // error characters
             case let .charactersResponse(.failure(error)):
                 state.errorMessage = error.localizedDescription
                 return .none
