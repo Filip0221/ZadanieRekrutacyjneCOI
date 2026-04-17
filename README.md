@@ -19,11 +19,11 @@ Zadanie polegało na stworzeniu prostej aplikacji, która pobiera dane z publicz
 - Swift 6
 - iOS 18+
 - SwiftUI
-- The Composable Architecture (TCA)
-- Swift Concurrency (async/await)
-- SwiftData (persistencja danych)
-- Swift Testing (testy jednostkowe)
-- SnapshotTesting (testy snapshotowe UI)
+- The Composable Architecture
+- Swift Concurrency 
+- SwiftData 
+- Swift Testing
+- SnapshotTesting
 
 ## Dodatkowe elementy
 
