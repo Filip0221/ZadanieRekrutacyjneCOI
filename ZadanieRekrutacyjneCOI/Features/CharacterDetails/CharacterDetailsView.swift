@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CharacterDetailsView: View {
     let store: StoreOf<CharacterDetailsFeature>
-
+    
     var body: some View {
         ScrollView{
             VStack(spacing: 16) {
@@ -58,3 +58,21 @@ struct CharacterDetailsView: View {
     }
 }
 
+#Preview {
+    CharacterDetailsView(store: Store(
+        initialState: CharacterDetailsFeature.State(
+            character: CharacterDTO(
+                id: 1,
+                name: "Rick Sanchez",
+                status: "Alive",
+                gender: "Male",
+                origin: CharacterLocationDTO(name: "Earth"),
+                location: CharacterLocationDTO(name: "Earth"),
+                image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+                episode: []
+            )
+        )
+    ) {
+        CharacterDetailsFeature()
+    })
+}

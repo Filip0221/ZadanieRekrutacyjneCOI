@@ -20,26 +20,34 @@ struct CharactersListView: View {
                             CharacterDetailsFeature()
                         })
                     } label: {
-                    Text(character.name)
-                        .onAppear {
-                            guard character.id == store.characters.last?.id else {return}
+                        Text(character.name)
+                            .onAppear {
+                                guard character.id == store.characters.last?.id else {return}
                                 store.send(.loadNextPage)
-                        }
+                            }
+                    }
+                }
+                
+                if store.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
                 }
             }
-            
-            if store.isLoading {
-                ProgressView()
-                    .frame(maxWidth: .infinity)
-            }
+            .navigationTitle("Characters")
+            .task { await store.send(.onAppear).finish() }
+            .refreshable { await store.send(.refresh).finish() }
+            .searchable(text: Binding(
+                get: { store.searchText },
+                set: { store.send(.searchChanged($0)) }
+            ))
         }
-        .navigationTitle("Characters")
-        .task { await store.send(.onAppear).finish() }
-        .refreshable { await store.send(.refresh).finish() }
-        .searchable(text: Binding(
-            get: { store.searchText },
-            set: { store.send(.searchChanged($0)) }
-        ))
     }
 }
+
+#Preview{
+    CharactersListView(
+        store: Store(initialState: CharactersListFeature.State()){
+            CharactersListFeature()
+        }
+    )
 }
