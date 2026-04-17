@@ -11,6 +11,7 @@ struct APIClient {
     var fetchCharacters: @Sendable (_ page: Int, _ name: String?) async throws -> CharacterResponseDTO
     var fetchEpisode: @Sendable (_ id: Int) async throws -> EpisodeDTO
     var fetchEpisodes: @Sendable (_ ids: [Int]) async throws -> [EpisodeDTO]
+    var fetchCharactersByIds: @Sendable (_ ids: [Int]) async throws -> [CharacterDTO]
 }
 
 extension APIClient {
@@ -72,6 +73,31 @@ extension APIClient {
                 throw APIError.decodingFailed
             }
         },
+        fetchCharactersByIds: {ids in
+            guard !ids.isEmpty else {
+                return[]
+            }
+            let idString = ids.map(String.init).joined(separator: ",")
+            let urlString = "https://rickandmortyapi.com/api/character/\(idString)"
+            
+            guard let url = URL(string: urlString) else {
+                throw APIError.invalidURL
+            }
+            
+            let (data, response) = try await URLSession.shared.data(from: url)
+            try validate(response: response)
+            
+            do {
+                if ids.count == 1 {
+                    let character = try JSONDecoder().decode(CharacterDTO.self, from: data)
+                    return [character]
+                } else {
+                    return try JSONDecoder().decode([CharacterDTO].self, from: data)
+                }
+            } catch {
+                throw APIError.decodingFailed
+            }
+        }
     )
 }
 
@@ -88,7 +114,7 @@ nonisolated private func validate(response: URLResponse) throws {
     guard let httpResponse = response as? HTTPURLResponse else {
         throw APIError.invalidResponse
     }
-
+    
     switch httpResponse.statusCode {
     case 200...299:
         return

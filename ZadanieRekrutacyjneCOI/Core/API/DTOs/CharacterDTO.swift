@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterDTO: Decodable, Equatable, Identifiable {
+nonisolated struct CharacterDTO: Decodable, Equatable, Identifiable {
     let id: Int
     let name: String
     let status: String

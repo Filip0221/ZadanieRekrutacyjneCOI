@@ -39,7 +39,14 @@ struct CharacterDetailsView: View {
                 }
                 VStack(alignment: .leading){
                     ForEach(store.episodes){ episode in
-                        Text("Odcinek \(episode.episode)")
+                        NavigationLink{
+                            EpisodeDetailsView(
+                                store: Store(initialState: EpisodeDetailsFeature.State(episodeID: episode.id)){
+                                    EpisodeDetailsFeature()
+                                })
+                        } label: {
+                            Text("Odcinek \(episode.episode)")
+                        }
                     }
                 }
             }
