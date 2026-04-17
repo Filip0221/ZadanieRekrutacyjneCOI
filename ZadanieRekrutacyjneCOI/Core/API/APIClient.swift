@@ -124,3 +124,4 @@ nonisolated private func validate(response: URLResponse) throws {
         throw APIError.serverError(statusCode: httpResponse.statusCode)
     }
 }
+

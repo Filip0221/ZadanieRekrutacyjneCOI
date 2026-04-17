@@ -7,9 +7,16 @@
 
 import Foundation
 
-nonisolated struct PageInfoDTO: Decodable, Equatable {
+nonisolated struct PageInfoDTO: Decodable, Equatable, Sendable {
     let count: Int
     let pages: Int
     let next: String?
     let prev: String?
+    
+    init(count: Int, pages: Int, next: String?, prev: String?) {
+        self.count = count
+        self.pages = pages
+        self.next = next
+        self.prev = prev
+    }
 }

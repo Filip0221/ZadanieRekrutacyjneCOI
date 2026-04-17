@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D54D43032F92A06100549E65 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D54D43022F92A06100549E65 /* InlineSnapshotTesting */; };
+		D54D43052F92A06100549E65 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = D54D43042F92A06100549E65 /* SnapshotTesting */; };
+		D54D43072F92A06100549E65 /* SnapshotTestingCustomDump in Frameworks */ = {isa = PBXBuildFile; productRef = D54D43062F92A06100549E65 /* SnapshotTestingCustomDump */; };
 		D59989602F8D261700A5FA2D /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = D599895F2F8D261700A5FA2D /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
@@ -44,11 +47,6 @@
 			path = ZadanieRekrutacyjneCOITests;
 			sourceTree = "<group>";
 		};
-		D599893D2F8D090600A5FA2D /* ZadanieRekrutacyjneCOIUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ZadanieRekrutacyjneCOIUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D54D43072F92A06100549E65 /* SnapshotTestingCustomDump in Frameworks */,
+				D54D43032F92A06100549E65 /* InlineSnapshotTesting in Frameworks */,
+				D54D43052F92A06100549E65 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +83,6 @@
 			children = (
 				D59989252F8D090400A5FA2D /* ZadanieRekrutacyjneCOI */,
 				D59989332F8D090600A5FA2D /* ZadanieRekrutacyjneCOITests */,
-				D599893D2F8D090600A5FA2D /* ZadanieRekrutacyjneCOIUITests */,
 				D599895E2F8D261700A5FA2D /* Frameworks */,
 				D59989242F8D090400A5FA2D /* Products */,
 			);
@@ -149,6 +149,9 @@
 			);
 			name = ZadanieRekrutacyjneCOITests;
 			packageProductDependencies = (
+				D54D43022F92A06100549E65 /* InlineSnapshotTesting */,
+				D54D43042F92A06100549E65 /* SnapshotTesting */,
+				D54D43062F92A06100549E65 /* SnapshotTestingCustomDump */,
 			);
 			productName = ZadanieRekrutacyjneCOITests;
 			productReference = D59989302F8D090600A5FA2D /* ZadanieRekrutacyjneCOITests.xctest */;
@@ -166,9 +169,6 @@
 			);
 			dependencies = (
 				D599893C2F8D090600A5FA2D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				D599893D2F8D090600A5FA2D /* ZadanieRekrutacyjneCOIUITests */,
 			);
 			name = ZadanieRekrutacyjneCOIUITests;
 			packageProductDependencies = (
@@ -211,6 +211,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D599894D2F8D0A1B00A5FA2D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				D54D43012F92A06100549E65 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D59989242F8D090400A5FA2D /* Products */;
@@ -607,6 +608,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D54D43012F92A06100549E65 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.2;
+			};
+		};
 		D599894D2F8D0A1B00A5FA2D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -618,6 +627,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D54D43022F92A06100549E65 /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D54D43012F92A06100549E65 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		D54D43042F92A06100549E65 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D54D43012F92A06100549E65 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		D54D43062F92A06100549E65 /* SnapshotTestingCustomDump */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D54D43012F92A06100549E65 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTestingCustomDump;
+		};
 		D599895F2F8D261700A5FA2D /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D599894D2F8D0A1B00A5FA2D /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
