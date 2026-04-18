@@ -10,10 +10,7 @@ Zadanie polegało na stworzeniu prostej aplikacji, która pobiera dane z publicz
 - Widok szczegółów odcinka
 - Lista bohaterów występujących w danym odcinku
 - Możliwość dodania bohatera do ulubionych (zapisywane lokalnie)
-- Obsługa stanów:
-  - ładowania
-  - błędów API
-  - brak danych
+- Obsługa stanów
 
 ## Technologie
 - Swift 6
